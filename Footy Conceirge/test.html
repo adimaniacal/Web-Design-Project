@@ -1,0 +1,33 @@
+<html>
+<head>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+</head>
+<body>
+<ul id="images">
+  <li><img src="img/slides/img1.jpg" width="580" height="360" alt="Grass Blades" /></li>
+  <li><img src="img/slides/img2.jpg" width="580" height="360" alt="Stones" /></li>
+  <li><img src="img/slides/img3.jpg" width="580" height="360" alt="Sea Mist" /></li>
+  <li><img src="img/slides/img4jpg" width="580" height="360" alt="Pier" /></li>
+  <li><img src="img/slides/img1.jpg" width="580" height="360" alt="Lotus" /></li>
+  <li><img src="img/slides/img2.jpg" width="580" height="360" alt="Mojave" /></li>
+  <li><img src="img/slides/img3.jpg" width="580" height="360" alt="Lightning" /></li>
+</ul>
+<script type="text/javascript" src="js/jquery.endless-scroll.js"></script>
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    $(document).endlessScroll({
+      bottomPixels: 500,
+      fireDelay: 10,
+      callback: function(i) {
+        var last_img = $("ul#images li:last");
+        last_img.after(last_img.prev().prev().prev().prev().prev().prev().clone());
+      }
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sample</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+			
+			
+			$('button').click(function(){
+				alert("Clicked..!");
+				  $.get("http://api.football-data.org/alpha/fixtures/?timeFrameStart=2015-04-20&timeFrameEnd=2015-04-28", 
+						function(data, status){
+							//alert("Data: " + data + "\nStatus: " + status);
+							
+							var output="<div>";
+							for (var i in data.fixtures) {
+							output+="<li>" + data.fixtures[i].date + " " + data.fixtures[i].homeTeamName + " v/s " + data.fixtures[i].awayTeamName+"</li><br>";
+							}
+							output+="</div>";
+							document.getElementById("view").innerHTML=output;
+							
+							$.ajax({ 
+						type: 'GET', 
+						url: 'http://api.football-data.org/alpha/soccerseasons/358/leagueTable', 
+						contextType:"appication/json",
+						success: function (data) { 
+						console.log(data.fixtures);
+						
+							}
+						});	
+						
+					});
+									
+										
+				});
+				
+				$('a').click(function(){
+				
+				  $.get("http://api.football-data.org/alpha/soccerseasons/358/leagueTable", 
+						function(data, status){
+							//alert("Data: " + data + "\nStatus: " + status);
+							
+							var output="<div>";
+							for (var i in data.standing) {
+							output+="<li>" + data.standing[i].teamName + " " + data.fixtures[i].goalDifference + " v/s " + data.fixtures[i].points+"</li><br>";
+							}
+							output+="</div>";
+							document.getElementById("content").innerHTML=output;
+							
+							$.ajax({ 
+						type: 'GET', 
+						url: 'http://api.football-data.org/alpha/soccerseasons/358/leagueTable', 
+						contextType:"appication/json",
+						success: function (data) { 
+						console.log(data.fixtures);
+						
+							}
+						});	
+						
+					});
+									
+										
+				});
+			
+			
+			
+			
+		});
+</script>
+</head>
+<body>
+	
+<h1>Fixtures between timeFrame: 2015-04-20 to 2015-04-28</h1>
+<button>Click here to view all fixtures</button>
+<a href="#">La Liga</a>
+<div id="view">
+
+</div>
+<div id="content">
+
+</div>
+		
+</body>
+</html>
